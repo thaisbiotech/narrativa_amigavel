@@ -25,9 +25,10 @@ details{border-top:1px solid var(--line);padding:.65rem 0}summary{cursor:pointer
 <h1>Narrativa amigável</h1>
 <p>Como apresentar textos e dados de saúde para que o público entenda a mensagem, consiga conferir os números e reconheça o que eles têm a ver com sua realidade.</p>
 <a class="hero-link" href="#roteiro">Começar a aula</a>
+<p style="margin:1.25rem 0 0;font-size:.9rem"><strong>Autoria</strong> · Thaís Barbosa de Oliveira · Mariana Pires · Agente da OpenAI (Dostô)</p>
 </div></header>
 <nav aria-label="Seções da aula"><div class="wrap">
-<a href="#roteiro">Roteiro</a><a href="#visual">Visual eficaz</a><a href="#cores">Cores inclusivas</a><a href="#transparencia">Transparência</a><a href="#emocao">Emoção</a><a href="#acessibilidade">Acessibilidade</a><a href="#grandes-numeros">Grandes números</a><a href="#pratica">Prática</a><a href="#avaliacao">Avaliação</a>
+<a href="#roteiro">Roteiro</a><a href="#visual">Visual eficaz</a><a href="#cores">Cores inclusivas</a><a href="#transparencia">Transparência</a><a href="#emocao">Emoção</a><a href="#acessibilidade">Acessibilidade</a><a href="#grandes-numeros">Grandes números</a><a href="#pratica">Prática</a><a href="#avaliacao">Fórum e avaliação</a>
 </div></nav>
 <main class="wrap" id="conteudo">
 <section id="roteiro"><p class="eyebrow kicker">Roteiro</p><h2>O que é uma narrativa amigável?</h2>
@@ -99,18 +100,32 @@ details{border-top:1px solid var(--line);padding:.65rem 0}summary{cursor:pointer
 <details><summary>5. Uma aula tem vídeo narrado, slides e um gráfico. Que materiais de apoio você ofereceria?</summary><p>Uma versão em Libras dos conteúdos principais, legendas e transcrição do vídeo e um resumo acessível. Para quem usa braille, entregue também a síntese ou o roteiro impresso nesse formato. Para o gráfico, descreva o achado central e disponibilize os valores em uma tabela.</p></details>
 <details><summary>6. Como você apresentaria 1.234.567 atendimentos em um slide?</summary><p>Use “cerca de 1,2 milhão de atendimentos” no título ou na fala. Informe o local e o período e disponibilize o valor exato e a fonte na nota ou na tabela.</p></details>
 </section>
-<section id="avaliacao"><p class="eyebrow kicker">Encerramento</p><h2>Avaliação rápida</h2><p>Você pode baixar suas respostas como um arquivo de texto e compartilhá-lo com quem facilitou a aula. O preenchimento é local.</p>
-<form id="feedback">
-<label for="geral">1. Como você avalia a aula?</label>
-<select id="geral" name="geral" required><option value="">Selecione</option><option>Muito boa</option><option>Boa</option><option>Regular</option><option>Ruim</option></select>
-<fieldset><legend>2. A aula ajudou você a apresentar textos e dados com mais clareza?</legend>
-<label><input type="radio" name="ajuda" value="Sim" required> Sim</label>
-<label><input type="radio" name="ajuda" value="Em parte"> Em parte</label>
-<label><input type="radio" name="ajuda" value="Ainda tenho dúvidas"> Ainda tenho dúvidas</label></fieldset>
-<label for="sugestao">3. O que você sugere para uma próxima aula? (opcional)</label>
-<textarea id="sugestao" name="sugestao" rows="3"></textarea>
-<div class="actions"><button class="btn" type="submit">Baixar minhas respostas</button><button class="btn secondary" type="reset">Limpar</button></div><p id="feedback-status" role="status"></p>
-</form></section>
+<section id="avaliacao">
+<p class="eyebrow kicker">Encerramento</p>
+<h2>Fórum e avaliação rápida</h2>
+<p>Deixe sua avaliação ou uma dúvida nos comentários. Para publicar, entre com sua conta do GitHub. Os comentários são públicos.</p>
+<ol>
+<li>Como você avalia a aula?</li>
+<li>A aula ajudou você a apresentar textos e dados com mais clareza?</li>
+<li>O que você sugere para uma próxima aula? (opcional)</li>
+</ol>
+<script src="https://giscus.app/client.js"
+        data-repo="thaisbiotech/narrativa_amigavel"
+        data-repo-id="R_kgDOVqnIig"
+        data-category="General"
+        data-category-id="DIC_kwDOVqnIis4DK4zu"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="pt"
+        crossorigin="anonymous"
+        async>
+</script>
+<p><a href="https://github.com/thaisbiotech/narrativa_amigavel/discussions">Abrir as discussões no GitHub</a></p>
+</section>
 <section id="referencias"><p class="eyebrow kicker">Fontes</p><h2>Referências da aula</h2><ul>
 <li>Introdução à “Narrativa amigável” (Friendly Storytelling). Apresentação didática, 2023.</li>
 <li>KNAFLIC, Cole Nussbaumer. <cite>Storytelling com dados</cite>. Rio de Janeiro: Alta Books, 2019.</li>
@@ -129,28 +144,6 @@ document.querySelectorAll('.enlarge').forEach(button => {
     dialog.showModal();
   });
 });
-const feedback = document.querySelector('#feedback');
-const status = document.querySelector('#feedback-status');
-feedback.addEventListener('submit', event => {
-  event.preventDefault();
-  const answers = new FormData(feedback);
-  const content = [
-    'Avaliação da aula — Narrativa amigável',
-    '1. Avaliação geral: ' + answers.get('geral'),
-    '2. A aula ajudou? ' + answers.get('ajuda'),
-    '3. Sugestão: ' + answers.get('sugestao').trim()
-  ].join('\n\n');
-  const url = URL.createObjectURL(new Blob([content], {type: 'text/plain;charset=utf-8'}));
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'avaliacao-narrativa-amigavel.txt';
-  document.body.append(link);
-  link.click();
-  link.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-  status.textContent = 'Download solicitado. Confira a pasta de downloads do navegador.';
-});
-feedback.addEventListener('reset', () => { status.textContent = ''; });
 </script>
 </body>
 </html>
